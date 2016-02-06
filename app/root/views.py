@@ -1,7 +1,7 @@
+from flask import request
+from . import root
 import json
 from collections import namedtuple
-from flask import request
-from app import app
 
 CONTENT_TYPE = {'Content-Type': 'application/json;charset=UTF-8'}
 
@@ -42,7 +42,7 @@ def _json_object_hook(d): return namedtuple('X', d.keys())(*d.values())
 def json2obj(data): return json.loads(data, object_hook=_json_object_hook)
 
 
-@app.route('/', methods=['POST'])
+@root.route('/', methods=['POST'])
 def post():
     print json.dumps(
         request.json, indent=2, sort_keys=False, separators=(',', ': '))
